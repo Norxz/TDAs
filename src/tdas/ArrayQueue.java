@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tdas;
 
 import java.util.Iterator;
@@ -10,43 +6,54 @@ import java.util.Iterator;
  *
  * @author asus
  */
-public class ArrayQueue <Item> implements Iterable <Item> {
-    
-    private Item[]arr;
+public class ArrayQueue<Item> implements Iterable<Item> {
+
+    private Item[] arr;
     private int count;
-    private int first;
-    private int last;
-    
-    public ArrayQueue(){
-        
+    private int first = 0;
+    private int last = 0;
+
+    public ArrayQueue() {
+
     }
 
-    public void enqueue(Item item){
-        
+    public void enqueue(Item item) {
+        if (count == arr.length) {
+            resize(arr.length * 2);
+        }
+        arr[count++] = item;
+        last++;
     }
-    
-    public Item dequeue(){
-        
+
+    public Item dequeue() {
+        Item temp = arr[first];
+        count--;
+        arr[first] = null;
+        first++;
+        if (count <= arr.length / 4 && count > 0) {
+            resize(arr.length / 2);
+        }
+        return temp;
     }
-    
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return (count == 0);
     }
-    
-    public int size(){
+
+    public int size() {
         return count;
     }
-    
-    private void resize(int maxCap){
-        
+
+    private void resize(int maxCap) {
+
     }
 
     @Override
     public Iterator<Item> iterator() {
         return new ArrayIterator();
     }
-    
-    private class ArrayIterator implements Iterator<Item>{
+
+    private class ArrayIterator implements Iterator<Item> {
 
         @Override
         public boolean hasNext() {
@@ -57,9 +64,7 @@ public class ArrayQueue <Item> implements Iterable <Item> {
         public Item next() {
             throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
-        
+
     }
-    
-    
-            
+
 }
