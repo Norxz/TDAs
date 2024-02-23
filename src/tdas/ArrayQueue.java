@@ -22,14 +22,19 @@ public class ArrayQueue<Item> implements Iterable<Item> {
             resize(arr.length * 2);
         }
         arr[count++] = item;
-        last++;
+        if (last++ > arr.length) {
+            last = 0;
+        }else last++;
+        
     }
 
     public Item dequeue() {
         Item temp = arr[first];
         count--;
         arr[first] = null;
-        first++;
+        if (first++ > arr.length) {
+            first = 0;
+        }else first++;
         if (count <= arr.length / 4 && count > 0) {
             resize(arr.length / 2);
         }
