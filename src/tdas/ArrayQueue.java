@@ -73,7 +73,7 @@ public class ArrayQueue<Item> implements Iterable<Item> {
         private int i = count;
 
         @Override
-        public boolean hasNext() {
+        public boolean hasNext() {            
             return count > 0;
         }
 
