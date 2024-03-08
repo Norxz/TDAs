@@ -13,13 +13,14 @@ public class Principal {
     //FixedCapacityStack <String> stack;
     //FixedCapacityStack <Integer> stack;
     //ResizingCapacityStack<String> stack;
-    ArrayStack<String> stack;
+    ArrayQueue<String> queue;
     
     public Principal(/*int maxCap*/){
         //stack = new FixedCapacityStackOfStrings(maxCap);
         //stack = new FixedCapacityStack<>(maxCap);
         //stack = new ResizingCapacityStack<>();
-        stack = new ArrayStack<>();
+        //stack = new ArrayStack<>();
+        queue = new ArrayQueue<>();
     }
     
     private String generarNombre(){
@@ -51,7 +52,7 @@ public class Principal {
         while(true){
             System.out.println("""
                                Seleccione una opci\u00f3n: 
-                               1. Insertar un dato
+                               1. Insertar un dato ._.
                                2. Eliminar un dato
                                3. Conocer el n\u00famero de datos almacenados
                                4. Mostrar los datos almacenados
@@ -65,7 +66,8 @@ public class Principal {
                         //numero = ppal.generarNumero();
                         System.out.println("Se adicionó el dato: " + nombre + "\n");
                         //System.out.println("Se adicionó el dato: " + numero + "\n");
-                        ppal.stack.push(nombre);
+                        ppal.queue.enqueue(nombre);
+                        //ppal.stack.push(nombre);
                         //ppal.stack.push(numero);
                     /*}
                     else
@@ -73,21 +75,21 @@ public class Principal {
                         */
                     break;
                 case 2: 
-                    if(!ppal.stack.isEmpty()){
-                        nombre = ppal.stack.pop();        
+                    if(!ppal.queue.isEmpty()){
+                        nombre = ppal.queue.dequeue();        
                         //numero = ppal.stack.pop();        
                         System.out.println("Se eliminó a " + nombre + "\n");
                         //System.out.println("Se eliminó a " + numero + "\n");
                     }
                     else
-                        System.out.println("No hay datos para eliminar, la pila está vacía\n");
+                        System.out.println("No hay datos para eliminar, la cola está vacía\n");
                     break;
                 case 3: 
-                    System.out.println(((ppal.stack.isEmpty())?"La pila está vacía" : "La pila tiene " + ppal.stack.size() + " datos almacenados") + "\n");
+                    System.out.println(((ppal.queue.isEmpty())?"La cola está vacía" : "La cola tiene " + ppal.queue.size() + " datos almacenados") + "\n");
                     break;
                 case 4: 
                     //System.out.println("\nDatos almacenados:\n" + ((ppal.stack.isEmpty())? "La pila está vacía" : ppal.stack ) + "\n");
-                    for(String s : ppal.stack){
+                    for(String s : ppal.queue){
                         System.out.println(s);
                     }                        
                     System.out.println("");
