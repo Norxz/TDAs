@@ -70,16 +70,19 @@ public class ArrayQueue<Item> implements Iterable<Item> {
 
     private class ArrayIterator implements Iterator<Item> {
 
-        private int i = count;
+        private int i = count - 1; // Inicializa i apuntando al último elemento
 
         @Override
-        public boolean hasNext() {            
-            return count > 0;
+        public boolean hasNext() {
+            return i >= 0; // Devuelve true si hay más elementos por iterar
         }
 
         @Override
         public Item next() {
-            return arr[--count];
+            if (!hasNext()) {
+                throw new NoSuchElementException("No hay más elementos para iterar");
+            }
+            return arr[i--]; // Devuelve el elemento actual y decrementa i
         }
 
     }
